@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src="../static/jslib/d3-tip.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <title>Chinavis2019</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <link rel="stylesheet" href="../static/css/d3.slider.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link rel="stylesheet" href="../static/css/line-chart.css" />
+    <link href="../static/css/bar-chart-race.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id = "heatmap">
+        <div id="container" class="container"></div>
+        <div class="input-card" id="button-container" style="width: 600px;">
+            <div class="input-item">
+                <button class="btn" id="heatmap_btn" style="margin-right:10px;" onclick="onclick_heatmap()">关闭热力图</button>
+                <button class="btn" id="isoline_btn" style="margin-right:10px;" onclick="onclick_isoline()">关闭等值线</button>
+                <button class="btn" id="uporder_btn" style="margin-right:10px;" onclick="onclick_uporder()">显示上车订单起始点</button>
+                <button class="btn" id="downorder_btn" style="margin-right:10px;" onclick="onclick_downorder()">显示下车订单起始点</button>
+              <select name="code-list" onchange="changeInterval(this.value)">
+                  <option value="-1">选择时间粒度</option>
+                    <option value="0">1h</option>
+                    <option value="1">30min</option>
+                    <option value="2">10min</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="input-card" id = "slider-container" style="width: 800px;">
+            <div class="horizontal-range" >
+                <div id="slider"></div>
+            </div>
+
+        </div>
+         <div class="input-card" id = "select-container" style="width:70px;">
+        <div class="input-item">
+             <button class="btn" id="select" onclick="onclick_select()" >确定</button>
+
+        </div>
+        </div>
+    </div>
+    <div id="rank-chart">
+      <div id='progressSlider'></div>
+       <div id="choice" class='choice'>
+        <label class="choice-label" for="countsOption">车辆数</label>
+        <input type="radio" name="barOption" id="countsOption" checked="true" />
+        <button id="stopBtn">暂停/开始</button>
+        <br/>
+        <label class="choice-label" for="speedOption">平均车速</label>
+        <input type="radio" name="barOption" id="speedOption" />
+      </div>
+    </div>
+    <div id="lineChart"></div>
+    <script src="//webapi.amap.com/maps?v=1.4.15&key=d936cd21e7833db183d37ababd6a2363&"></script>
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=d936cd21e7833db183d37ababd6a2363&plugin=AMap.Geocoder"></script>
+    <script src="//webapi.amap.com/loca?v=1.3.0&key=d936cd21e7833db183d37ababd6a2363"></script>
+    <script type="text/javascript" src="https://a.amap.com/jsapi_demos/static/demo-center/data/mock_position.js"></script>
+    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+
+    <script type="text/javascript" src="https://a.amap.com/jsapi_demos/static/demo-center/data/mock_position.js"></script>
+
+    <script type="text/javascript" src="../static/jslib/d3.slider.js"></script>
+    <script type="text/javascript">
+    	    var Server = {
+      	           heatmap_data:{{ heatmap_data|safe }},
+                up_order:{{ up_order|safe }},
+                down_order:{{ down_order|safe }}
+  	    };
+	</script>
+    <script type="text/javascript" src="../static/js/lineChart.js"></script>
+    <script type="text/javascript" src="../static/js/rank.js"></script>
+    <script type="text/javascript" src="../static/js/change.js"></script>
+    <script type="text/javascript" src="../static/js/main.js"></script>
+</body>
+
+</html>

@@ -4,7 +4,6 @@ In recent years, with the rise of the network car platform, the deep integration
 
 Our data visualization project is shown as follows.
 
-=======
 ### data process
 gcj02_to_bd09.py is used to get the gps infos list from origin data.
 
